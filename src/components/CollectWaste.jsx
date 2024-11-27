@@ -10,7 +10,6 @@ export default function CollectWaste() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
     console.log('Waste collection submitted:', { location, wasteType, weight });
   };
 

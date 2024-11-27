@@ -11,7 +11,7 @@ export default function ReportWaste() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    
     console.log('Report submitted:', { location, wasteType, description, image });
   };
 

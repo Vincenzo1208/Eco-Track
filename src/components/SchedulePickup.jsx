@@ -8,7 +8,7 @@ function SchedulePickup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // In a real app, you would handle the scheduling here
+  
     alert(`Pickup scheduled for ${date} for ${amount} of ${wasteType}`);
   };
 
