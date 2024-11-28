@@ -5,7 +5,7 @@ import Dashboard from './components/Dashboard';
 import SchedulePickup from './components/SchedulePickup';
 import RecyclingMap from './components/RecyclingMap';
 import ReportWaste from './components/ReportWaste';
-import CollectWaste from './components/CollectWaste';
+// import CollectWaste from './components/CollectWaste';
 import Rewards from './components/Rewards';
 import Leaderboard from './components/Leaderboard';
 import Achievements from './components/Achievements';
@@ -36,10 +36,10 @@ function App() {
           path="/report"
           element={isLoggedIn ? <ReportWaste /> : <Navigate to="/login" />}
         />
-        <Route
+        {/* <Route
           path="/collect"
           element={isLoggedIn ? <CollectWaste /> : <Navigate to="/login" />}
-        />
+        /> */}
         <Route
           path="/rewards"
           element={isLoggedIn ? <Rewards /> : <Navigate to="/login" />}

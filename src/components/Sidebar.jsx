@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { 
   FaHome, 
   FaMapMarkerAlt, 
-  FaTrashAlt, 
+  // FaTrashAlt, 
   FaCoins, 
   FaTrophy, 
   FaCog,
@@ -20,7 +20,7 @@ export function Sidebar() {
   const menuItems = [
     { path: '/dashboard', icon: FaHome, label: 'Dashboard' },
     { path: '/report', icon: FaMapMarkerAlt, label: 'Report Waste' },
-    { path: '/collect', icon: FaTrashAlt, label: 'Collect Waste' },
+    // { path: '/collect', icon: FaTrashAlt, label: 'Collect Waste' },
     { path: '/schedule', icon: FaCalendarAlt, label: 'Schedule Pickup' },
     { path: '/map', icon: FaMap, label: 'Recycling Map' },
     { path: '/rewards', icon: FaCoins, label: 'Rewards' },
