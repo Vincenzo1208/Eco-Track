@@ -10,7 +10,7 @@ const backgroundImages = [
   'https://img.freepik.com/free-vector/city-park-garbage-composition_1284-69616.jpg?t=st=1732551112~exp=1732554712~hmac=6381faee6d7b05f49de00261e6727f97da65ad358158f5bb854f74bf5f3cdf56&w=1380'
 ];
 
-function Login({ setIsLoggedIn }) {
+function Login({ setIsLoggedIn, setUserRole }) {
   const [isRegistering, setIsRegistering] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,7 +32,18 @@ function Login({ setIsLoggedIn }) {
     e.preventDefault();
 
     setIsLoggedIn(true);
-    navigate('/dashboard');
+    setUserRole(role);
+
+    switch (role) {
+      case 'admin':
+        navigate('/admin-dashboard');
+        break;
+      case 'collector':
+        navigate('/collector-dashboard');
+        break;
+      default:
+        navigate('/dashboard');
+    }
   };
 
   return (
@@ -134,7 +145,8 @@ function Login({ setIsLoggedIn }) {
 }
 
 Login.propTypes = {
-  setIsLoggedIn: PropTypes.func.isRequired
+  setIsLoggedIn: PropTypes.func.isRequired,
+  setUserRole: PropTypes.func.isRequired
 };
 
 export default Login;

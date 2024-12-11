@@ -5,25 +5,46 @@ import Dashboard from './components/Dashboard';
 import SchedulePickup from './components/SchedulePickup';
 import RecyclingMap from './components/RecyclingMap';
 import ReportWaste from './components/ReportWaste';
-// import CollectWaste from './components/CollectWaste';
 import Rewards from './components/Rewards';
 import Leaderboard from './components/Leaderboard';
 import Achievements from './components/Achievements';
 import Statistics from './components/Statistics';
 import CommunityForum from './components/CommunityForum';
 import EcoTips from './components/EcoTips';
+import AdminDashboard from './components/AdminDashboard';
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState(null);
+
+  const getDashboardRoute = () => {
+    switch (userRole) {
+      case 'admin':
+        return '/admin-dashboard';
+      case 'collector':
+        return '/collector-dashboard';
+      default:
+        return '/dashboard';
+    }
+  };
 
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+        <Route 
+          path="/login" 
+          element={<Login setIsLoggedIn={setIsLoggedIn} setUserRole={setUserRole} />} 
+        />
         <Route
           path="/dashboard"
-          element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}
+          element={isLoggedIn && userRole === 'user' ? <Dashboard /> : <Navigate to="/login" />}
         />
+        <Route
+          path="/admin-dashboard"
+          element={isLoggedIn && userRole === 'admin' ? <AdminDashboard /> : <Navigate to="/login" />}
+        />
+        
         <Route
           path="/schedule"
           element={isLoggedIn ? <SchedulePickup /> : <Navigate to="/login" />}
@@ -36,10 +57,6 @@ function App() {
           path="/report"
           element={isLoggedIn ? <ReportWaste /> : <Navigate to="/login" />}
         />
-        {/* <Route
-          path="/collect"
-          element={isLoggedIn ? <CollectWaste /> : <Navigate to="/login" />}
-        /> */}
         <Route
           path="/rewards"
           element={isLoggedIn ? <Rewards /> : <Navigate to="/login" />}
@@ -64,7 +81,7 @@ function App() {
           path="/eco-tips"
           element={isLoggedIn ? <EcoTips /> : <Navigate to="/login" />}
         />
-        <Route path="/" element={<Navigate to="/dashboard" />} />
+        <Route path="/" element={<Navigate to={getDashboardRoute()} />} />
       </Routes>
     </Router>
   );
